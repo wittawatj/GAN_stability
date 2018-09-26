@@ -40,6 +40,6 @@ class Evaluator(object):
             y = torch.full((batch_size,), y,
                            device=self.device, dtype=torch.int64)
         # Sample x
-        with torch.no_grad():
-            x = self.generator(z, y)
+        # with torch.no_grad():
+        x = self.generator(z, y)
         return x
