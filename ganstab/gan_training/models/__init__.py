@@ -1,4 +1,4 @@
-from gan_training.models import (
+from ganstab.gan_training.models import (
     resnet, resnet2, 
 )
 

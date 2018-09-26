@@ -5,10 +5,10 @@ import copy
 import numpy as np
 import torch
 from torch import nn
-from gan_training import utils
-from gan_training.checkpoints import CheckpointIO
-from gan_training.distributions import get_ydist, get_zdist, interpolate_sphere
-from gan_training.config import (
+from ganstab.gan_training import utils
+from ganstab.gan_training.checkpoints import CheckpointIO
+from ganstab.gan_training.distributions import get_ydist, get_zdist, interpolate_sphere
+from ganstab.gan_training.config import (
     load_config, build_models
 )
 

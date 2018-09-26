@@ -1,7 +1,7 @@
 import yaml
 from torch import optim
-from gan_training.models import generator_dict, discriminator_dict
-from gan_training.train import toogle_grad
+from ganstab.gan_training.models import generator_dict, discriminator_dict
+from ganstab.gan_training.train import toogle_grad
 
 # DEFAULT_CONFIG = path.join(path.dirname(__file__), 'configs/default.yaml')
 
