@@ -7,13 +7,13 @@ data:
   img_size: 256
   nlabels: 1
 generator:
-  name: resnet
+  name: resnet4
   kwargs:
     nfilter: 64
     nfilter_max: 1024
     embed_size: 1
 discriminator:
-  name: resnet
+  name: resnet4
   kwargs:
     nfilter: 64
     nfilter_max: 1024
