@@ -14,11 +14,9 @@ def load_config(path):
     # config.update(config_new)
     return config
 
-
-def build_models(config):
+def build_generator(config):
     # Get classes
     Generator = generator_dict[config['generator']['name']]
-    Discriminator = discriminator_dict[config['discriminator']['name']]
 
     # Build models
     generator = Generator(
@@ -27,6 +25,13 @@ def build_models(config):
         size=config['data']['img_size'],
         **config['generator']['kwargs']
     )
+    return generator
+
+def build_models(config):
+    # Get classes
+    Discriminator = discriminator_dict[config['discriminator']['name']]
+
+    # Build models
     discriminator = Discriminator(
         config['discriminator']['name'],
         nlabels=config['data']['nlabels'],
@@ -34,6 +39,7 @@ def build_models(config):
         **config['discriminator']['kwargs']
     )
 
+    generator = build_generator(config)
     return generator, discriminator
 
 
