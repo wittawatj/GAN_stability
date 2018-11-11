@@ -1,5 +1,6 @@
 import os
 import torch
+import warnings
 
 
 class CheckpointIO(object):
@@ -22,11 +23,12 @@ class CheckpointIO(object):
         torch.save(outdict, filename)
 
     def load(self, filename):
-        filename = os.path.join(self.checkpoint_dir, filename)
+        fpath = os.path.join(self.checkpoint_dir, filename)
 
-        if os.path.exists(filename):
-            print('=> Loading checkpoint...')
-            out_dict = torch.load(filename)
+        # print('??', self.checkpoint_dir)
+        if os.path.exists(fpath):
+            print('=> Loading checkpoint from {}'.format(fpath))
+            out_dict = torch.load(fpath)
             it = out_dict['it']
             for k, v in self.module_dict.items():
                 if k in out_dict:
@@ -34,6 +36,6 @@ class CheckpointIO(object):
                 else:
                     print('Warning: Could not find %s in checkpoint!' % k)
         else:
+            warnings.warn('{} does not exist. Cannot load'.format(fpath))
             it = -1
-
         return it
