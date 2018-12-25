@@ -38,6 +38,7 @@ class Generator(nn.Module):
 
         self.resnet = nn.Sequential(*blocks)
         self.conv_img = nn.Conv2d(nf, 3, 3, padding=1)
+        self.resize = nn.Upsample(scale_factor=1)
 
     def forward(self, z, y):
         assert(z.size(0) == y.size(0))
@@ -57,9 +58,16 @@ class Generator(nn.Module):
         out = self.resnet(out)
 
         out = self.conv_img(actvn(out))
+        out = self.resize(out)
         out = F.tanh(out)
 
         return out
+    
+    #****TODO: find a better way to do this:
+    def update_resnet(self,resnet):
+        self.resnet = resnet
+    def add_resize(self,resize=256):
+        self.resize = nn.AdaptiveAvgPool2d((resize,resize))
 
 
 class Discriminator(nn.Module):
