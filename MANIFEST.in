@@ -1,5 +1,6 @@
 # include the LICENSE
 include LICENSE
+include ganstab/configs/*.yaml
 
 # include the test script
 #include run_unittest.sh
