@@ -68,6 +68,8 @@ setup(
     # simple. Or you can use find_packages().
     packages=find_packages(exclude=['data', '*.ex']),
     
+    include_package_data=True,
+    
     # See https://www.python.org/dev/peps/pep-0440/#version-specifiers
     python_requires='~= 3.5',
 
