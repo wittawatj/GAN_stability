@@ -4,9 +4,10 @@ import warnings
 
 
 class CheckpointIO(object):
-    def __init__(self, checkpoint_dir='./chkpts', **kwargs):
+    def __init__(self, checkpoint_dir='./chkpts',map_location='gpu', **kwargs):
         self.module_dict = kwargs
         self.checkpoint_dir = checkpoint_dir
+        self.map_location = map_location
 
         if not os.path.exists(checkpoint_dir):
             os.makedirs(checkpoint_dir)
@@ -28,7 +29,7 @@ class CheckpointIO(object):
         # print('??', self.checkpoint_dir)
         if os.path.exists(fpath):
             print('=> Loading checkpoint from {}'.format(fpath))
-            out_dict = torch.load(fpath)
+            out_dict = torch.load(fpath,self.map_location)
             it = out_dict['it']
             for k, v in self.module_dict.items():
                 if k in out_dict:
