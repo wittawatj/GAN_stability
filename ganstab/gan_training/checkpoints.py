@@ -28,7 +28,7 @@ class CheckpointIO(object):
         # print('??', self.checkpoint_dir)
         if os.path.exists(fpath):
             print('=> Loading checkpoint from {}'.format(fpath))
-            out_dict = torch.load(fpath,map_location=map_location)
+            out_dict = torch.load(fpath)#,map_location=map_location)
             it = out_dict['it']
             for k, v in self.module_dict.items():
                 if k in out_dict:
